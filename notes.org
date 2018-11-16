@@ -1,0 +1,7 @@
+Feature: SELL ONE ITEM
+Input: barcode as a string
+Output: price
+Example: 
+scan '12345' -> ouput '$7.95'
+
+
