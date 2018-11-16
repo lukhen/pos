@@ -3,5 +3,9 @@ Input: barcode as a string
 Output: price
 Example: 
 scan '12345' -> ouput '$7.95'
-
+* Test List
+** TODO product found
+** TODO product not found
+** TODO empty barcode
+** TODO null barcode
 
