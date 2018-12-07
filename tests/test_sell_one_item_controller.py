@@ -26,7 +26,7 @@ class SaleController:
     def onbarcode(self, barcode):
         price = self.catalog.find_price(barcode)
         if price:
-            return self.display.display_price(self.catalog.find_price(barcode))
+            return self.display.display_price(price)
         else:
             self.display.display_product_not_found_message(barcode)
 
