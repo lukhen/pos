@@ -10,3 +10,10 @@ scan '12345' -> ouput '$7.95'
 *** TODO empty barcode
 
 
+** Catalog
+
+** Display
+
+** Price
+  - equals
+  - value object
