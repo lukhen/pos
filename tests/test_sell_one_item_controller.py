@@ -51,9 +51,9 @@ def test_product_found():
     display = Mock(spec=Display)
     sale_controller = SaleController(display, catalog)
     catalog.find_price.side_effect = \
-        lambda barcode: irrelevant_price if barcode == '12345' else None
+        lambda barcode: irrelevant_price if barcode == '::product found::' else None
 
-    sale_controller.onbarcode('12345')
+    sale_controller.onbarcode('::product found::')
 
     display.display_price.assert_called_with(irrelevant_price)
 
