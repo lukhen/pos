@@ -28,6 +28,7 @@ class SaleController:
         self.catalog = catalog
 
     def onbarcode(self, barcode):
+        # SMELL Should I get an empty barcode at all?
         if barcode != '':
             price = self.catalog.find_price(barcode)
             if price:
