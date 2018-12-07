@@ -6,7 +6,7 @@ scan '12345' -> ouput '$7.95'
 * Test List
 ** Controller
 *** DONE product found
-*** TODO product not found
+*** DONE product not found
 *** TODO empty barcode
 
 

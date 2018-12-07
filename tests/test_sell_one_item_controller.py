@@ -13,6 +13,10 @@ class Display(ABC):
     def display_price(self, price):
         ...
 
+    @abstractmethod
+    def display_product_not_found_message(self, barcode):
+        ...
+
 
 class SaleController:
     def __init__(self, display, catalog):
@@ -20,7 +24,11 @@ class SaleController:
         self.catalog = catalog
 
     def onbarcode(self, barcode):
-        return self.display.display_price(self.catalog.find_price(barcode))
+        price = self.catalog.find_price(barcode)
+        if price:
+            return self.display.display_price(self.catalog.find_price(barcode))
+        else:
+            self.display.display_product_not_found_message(barcode)
 
 
 class Price:
@@ -40,3 +48,17 @@ def test_product_found():
     sale_controller.onbarcode('12345')
 
     display.display_price.assert_called_with(irrelevant_price)
+
+
+def test_product_not_found():
+    irrelevant_barcode = '12345'
+    display = Mock(spec=Display)
+    catalog = Mock(spec=Catalog)
+    sale_controller = SaleController(display, catalog)
+    catalog.find_price.side_effect = \
+        lambda barcode: None if barcode == irrelevant_barcode else Price()
+
+    sale_controller.onbarcode(irrelevant_barcode)
+
+    display.display_product_not_found_message.assert_called_with(
+        irrelevant_barcode)
