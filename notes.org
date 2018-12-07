@@ -7,7 +7,7 @@ scan '12345' -> ouput '$7.95'
 ** Controller
 *** DONE product found
 *** DONE product not found
-*** TODO empty barcode
+*** DONE empty barcode
 
 
 ** Catalog
