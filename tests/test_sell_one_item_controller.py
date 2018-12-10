@@ -1,43 +1,6 @@
-from abc import ABC, abstractmethod
+
 from unittest.mock import Mock
-from tests.sale import Price
-
-
-class Catalog(ABC):
-    @abstractmethod
-    def find_price(self, barcode):
-        ...
-
-
-class Display(ABC):
-    @abstractmethod
-    def display_price(self, price):
-        ...
-
-    @abstractmethod
-    def display_product_not_found_message(self, barcode):
-        ...
-
-    @abstractmethod
-    def display_empty_barcode_message(self):
-        ...
-
-
-class SaleController:
-    def __init__(self, display, catalog):
-        self.display = display
-        self.catalog = catalog
-
-    def onbarcode(self, barcode):
-        # SMELL Should I get an empty barcode at all?
-        if barcode != '':
-            price = self.catalog.find_price(barcode)
-            if price:
-                return self.display.display_price(price)
-            else:
-                self.display.display_product_not_found_message(barcode)
-        else:
-            self.display.display_empty_barcode_message()
+from tests.sale import Price, Catalog, Display, SaleController
 
 
 def test_product_found():
