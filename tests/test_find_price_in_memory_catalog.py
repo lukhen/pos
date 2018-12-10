@@ -7,6 +7,10 @@ class TestFindPriceInMemoryCatalog:
         catalog = InMemoryCatalog({'12345': found_price})
         assert catalog.find_price('12345') == found_price
 
+    def test_product_not_found(self):
+        catalog = InMemoryCatalog({})
+        assert catalog.find_price('12345') is None
+
 
 class InMemoryCatalog:
     def __init__(self, prices_by_barcode):
