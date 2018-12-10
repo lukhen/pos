@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from unittest.mock import Mock
+from tests.sale import Price
 
 
 class Catalog(ABC):
@@ -37,12 +38,6 @@ class SaleController:
                 self.display.display_product_not_found_message(barcode)
         else:
             self.display.display_empty_barcode_message()
-
-
-class Price:
-    @staticmethod
-    def cents(cents_value):
-        return Price()
 
 
 def test_product_found():
