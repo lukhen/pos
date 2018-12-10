@@ -44,7 +44,7 @@ class SaleController:
             self.display.display_empty_barcode_message()
 
 
-class InMemoryCatalog:
+class InMemoryCatalog(Catalog):
     def __init__(self, prices_by_barcode):
         self.prices_by_barcode = prices_by_barcode
 
