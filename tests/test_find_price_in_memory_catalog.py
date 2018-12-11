@@ -28,4 +28,8 @@ class TestFindPriceInMemoryCatalog(FindPriceInCatalogContract):
                                 Price.cents(0)})
 
     def catalog_with(self, barcode, found_price) -> Catalog:
-        return InMemoryCatalog({barcode: found_price})
+        return InMemoryCatalog({
+            'definitely not ' + barcode: Price.cents(0),
+            barcode: found_price,
+            'once again, definitely not ' + barcode: Price.cents(10000000)
+        })
