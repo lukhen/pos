@@ -4,7 +4,7 @@ from tests.sale import Price, InMemoryCatalog, Catalog
 class TestFindPriceInMemoryCatalog:
     def test_product_found(self):
         found_price = Price.cents(1250)
-        catalog = self.catalogWith('12345', found_price)
+        catalog = self.catalog_with('12345', found_price)
         assert catalog.find_price('12345') == found_price
 
     def test_product_not_found(self):
@@ -15,5 +15,5 @@ class TestFindPriceInMemoryCatalog:
         return InMemoryCatalog({'anything but ' + barcode_to_avoid:
                                 Price.cents(0)})
 
-    def catalogWith(self, barcode, found_price) -> Catalog:
+    def catalog_with(self, barcode, found_price) -> Catalog:
         return InMemoryCatalog({barcode: found_price})
