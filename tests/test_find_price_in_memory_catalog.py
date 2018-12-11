@@ -12,7 +12,8 @@ class TestFindPriceInMemoryCatalog:
         assert catalog.find_price('12345') is None
 
     def catalog_without(self, barcode_to_avoid):
-        return InMemoryCatalog({})
+        return InMemoryCatalog({'anything but ' + barcode_to_avoid:
+                                Price.cents(0)})
 
     def catalogWith(self, barcode, found_price) -> Catalog:
         return InMemoryCatalog({barcode: found_price})
