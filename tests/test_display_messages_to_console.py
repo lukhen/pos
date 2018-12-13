@@ -8,6 +8,15 @@ def test_product_not_found_message(capsys):
         'Product not found for 91837248']
 
 
+def test_empty_barcode_message(capsys):
+    ConsoleDisplay().display_empty_barcode_message()
+    assert capsys.readouterr().out.splitlines() == [
+        'Scanning error: empty barcode']
+
+
 class ConsoleDisplay:
     def display_product_not_found_message(self, barcode):
         print('Product not found for {}'.format(barcode))
+
+    def display_empty_barcode_message(self):
+        print('Scanning error: empty barcode')
