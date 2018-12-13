@@ -14,7 +14,7 @@ scan '12345' -> ouput '$7.95'
 
 ** Display
 *** TODO price
-*** TODO product not found
+*** DONE product not found
 *** TODO empty barcode
 *** TODO multiple messages together
 ** Price

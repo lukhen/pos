@@ -10,4 +10,4 @@ def test_product_not_found_message(capsys):
 
 class ConsoleDisplay:
     def display_product_not_found_message(self, barcode):
-        print('Product not found for 91837248')
+        print('Product not found for {}'.format(barcode))
