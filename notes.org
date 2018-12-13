@@ -13,7 +13,10 @@ scan '12345' -> ouput '$7.95'
 ** Catalog
 
 ** Display
-
+*** TODO price
+*** TODO product not found
+*** TODO empty barcode
+*** TODO multiple messages together
 ** Price
   - equals
   - value object
