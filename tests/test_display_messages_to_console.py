@@ -1,3 +1,6 @@
+from tests.sale import Price
+
+
 def test_product_not_found_message(capsys):
     console_display = ConsoleDisplay()
     console_display.display_product_not_found_message("91837248")
@@ -32,3 +35,10 @@ class ConsoleDisplay:
 
     def display_empty_barcode_message(self):
         print('Scanning error: empty barcode')
+
+    def display_price(self, price):
+        print(ConsoleDisplay.format_monetary_amount(price))
+
+    @staticmethod
+    def format_monetary_amount(price: Price):
+        return "${:,.2f}".format(price.dollar_value())
