@@ -2,9 +2,15 @@ from abc import ABC, abstractmethod
 
 
 class Price:
+    def __init__(self, cents_value):
+        self.cents_value = cents_value
+
     @staticmethod
     def cents(cents_value):
-        return Price()
+        return Price(cents_value)
+
+    def dollar_value(self):
+        return self.cents_value / 100
 
 
 class Catalog(ABC):

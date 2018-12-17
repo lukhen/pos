@@ -18,8 +18,8 @@ scan '12345' -> ouput '$7.95'
 *** DONE empty barcode
 *** DONE multiple messages together
 ** Price
-*** TODO reuse format_monetary_amount from master branch 
-*** TODO format Price object
+*** DONE reuse format_monetary_amount from master branch 
+*** DONE format Price object
 *** TODO display Price object
   - equals
   - value object

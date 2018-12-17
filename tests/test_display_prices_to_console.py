@@ -1,4 +1,5 @@
 import pytest
+from tests.sale import Price
 
 
 @pytest.mark.parametrize("test_input, expected", [
@@ -12,8 +13,9 @@ import pytest
     (210832281, "$2,108,322.81")
 ])
 def test_simplest(test_input, expected):
-    assert eval("format_monetary_amount({})".format(test_input)) == expected
+    assert eval("format_monetary_amount(Price.cents({0}))".format(
+        test_input)) == expected
 
 
-def format_monetary_amount(price_in_cents: int):
-    return "${:,.2f}".format(price_in_cents / 100)
+def format_monetary_amount(price: Price):
+    return "${:,.2f}".format(price.dollar_value())
