@@ -1,6 +1,3 @@
-import io
-
-
 def test_product_not_found_message(capsys):
     console_display = ConsoleDisplay()
     console_display.display_product_not_found_message("91837248")
