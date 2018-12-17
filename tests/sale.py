@@ -56,3 +56,18 @@ class InMemoryCatalog(Catalog):
 
     def find_price(self, barcode):
         return self.prices_by_barcode.get(barcode, None)
+
+
+class ConsoleDisplay:
+    def display_product_not_found_message(self, barcode):
+        print('Product not found for {}'.format(barcode))
+
+    def display_empty_barcode_message(self):
+        print('Scanning error: empty barcode')
+
+    def display_price(self, price):
+        print(ConsoleDisplay.format_monetary_amount(price))
+
+    @staticmethod
+    def format_monetary_amount(price: Price):
+        return "${:,.2f}".format(price.dollar_value())

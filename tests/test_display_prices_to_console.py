@@ -1,6 +1,6 @@
 import pytest
 from tests.sale import Price
-from tests.test_display_messages_to_console import ConsoleDisplay
+from tests.sale import ConsoleDisplay
 
 
 # REFACTOR Apply Price.cents() to all the numbers so that
