@@ -75,5 +75,12 @@ class ConsoleDisplay:
         self.display(
             self.PRICE_IN_DOLLARS_MESSAGE_FORMAT, *placeholders)
 
-    def display(self, message_format, *placeholders):
-        print(str.format(message_format, *placeholders))
+    def display(self, message_template, *placeholders):
+        self._render(
+            self._format_message(message_template, *placeholders))
+
+    def _render(self, text):
+        print(text)
+
+    def _format_message(self, message_template, *placeholders):
+        return str.format(message_template, *placeholders)
