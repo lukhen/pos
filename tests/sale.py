@@ -59,14 +59,21 @@ class InMemoryCatalog(Catalog):
 
 
 class ConsoleDisplay:
-    def display_product_not_found_message(self, barcode):
-        print(str.format(
-            'Product not found for {}', barcode))
+    PRODUCT_NOT_FOUND_MESSAGE_FORMAT = "Product not found for {}"
+    SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT = 'Scanning error: empty barcode'
+    PRICE_IN_DOLLARS_MESSAGE_FORMAT = "${:,.2f}"
 
-    def display_empty_barcode_message(self):
-        print(str.format(
-            'Scanning error: empty barcode'))
+    def display_product_not_found_message(self, *placeholders):
+        self.display(
+            self.PRODUCT_NOT_FOUND_MESSAGE_FORMAT, *placeholders)
 
-    def display_price(self, price):
-        print(str.format(
-            "${:,.2f}", price.dollar_value()))
+    def display_empty_barcode_message(self, *placeholders):
+        self.display(
+            self.SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT, *placeholders)
+
+    def display_price_in_dollars(self, *placeholders):
+        self.display(
+            self.PRICE_IN_DOLLARS_MESSAGE_FORMAT, *placeholders)
+
+    def display(self, message_format, *placeholders):
+        print(str.format(message_format, *placeholders))
