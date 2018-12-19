@@ -63,17 +63,16 @@ class ConsoleDisplay:
     SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT = 'Scanning error: empty barcode'
     PRICE_IN_DOLLARS_MESSAGE_FORMAT = "${:,.2f}"
 
-    def display_product_not_found_message(self, *placeholder_values):
+    def display_product_not_found_message(self, barcode_not_found):
         self.display(
-            self.PRODUCT_NOT_FOUND_MESSAGE_FORMAT, *placeholder_values)
+            self.PRODUCT_NOT_FOUND_MESSAGE_FORMAT, barcode_not_found)
 
-    def display_empty_barcode_message(self, *placeholder_values):
-        self.display(
-            self.SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT, *placeholder_values)
+    def display_empty_barcode_message(self):
+        self.display(self.SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT)
 
-    def display_price_in_dollars(self, *placeholder_values):
+    def display_price(self, price):
         self.display(
-            self.PRICE_IN_DOLLARS_MESSAGE_FORMAT, *placeholder_values)
+            self.PRICE_IN_DOLLARS_MESSAGE_FORMAT, price.dollar_value())
 
     def display(self, message_template, *placeholder_values):
         self._render(

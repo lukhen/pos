@@ -17,7 +17,7 @@ from tests.sale import ConsoleDisplay
 ])
 def test_display_price(test_input, expected, capsys):
 
-    ConsoleDisplay().display_price_in_dollars(
-        Price.cents(test_input).dollar_value())
+    ConsoleDisplay().display_price(
+        Price.cents(test_input))
     assert capsys.readouterr().out.splitlines() == [
         expected]
