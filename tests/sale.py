@@ -64,19 +64,16 @@ class ConsoleDisplay:
     PRICE_IN_DOLLARS_MESSAGE_FORMAT = "${:,.2f}"
 
     def display_product_not_found_message(self, barcode_not_found):
-        self.display(
-            self.PRODUCT_NOT_FOUND_MESSAGE_FORMAT, barcode_not_found)
+        self._render(self._merge_template(
+            self.PRODUCT_NOT_FOUND_MESSAGE_FORMAT, barcode_not_found))
 
     def display_empty_barcode_message(self):
-        self.display(self.SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT)
+        self._render(self._merge_template(
+            self.SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT))
 
     def display_price(self, price):
-        self.display(
-            self.PRICE_IN_DOLLARS_MESSAGE_FORMAT, price.dollar_value())
-
-    def display(self, message_template, *placeholder_values):
-        self._render(
-            self._merge_template(message_template, *placeholder_values))
+        self._render(self._merge_template(
+            self.PRICE_IN_DOLLARS_MESSAGE_FORMAT, price.dollar_value()))
 
     def _render(self, text):
         print(text)
