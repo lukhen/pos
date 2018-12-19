@@ -77,10 +77,10 @@ class ConsoleDisplay:
 
     def display(self, message_template, *placeholder_values):
         self._render(
-            self._format_message(message_template, *placeholder_values))
+            self._merge_template(message_template, *placeholder_values))
 
     def _render(self, text):
         print(text)
 
-    def _format_message(self, message_template, *placeholder_values):
+    def _merge_template(self, message_template, *placeholder_values):
         return str.format(message_template, *placeholder_values)
