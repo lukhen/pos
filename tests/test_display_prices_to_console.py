@@ -1,6 +1,6 @@
 import pytest
 from tests.sale import Price
-from tests.sale import ConsoleDisplay
+from tests.sale import EnglishLanguageConsoleDisplay
 
 
 # REFACTOR Apply Price.cents() to all the numbers so that
@@ -17,7 +17,7 @@ from tests.sale import ConsoleDisplay
 ])
 def test_display_price(test_input, expected, capsys):
 
-    ConsoleDisplay().display_price(
+    EnglishLanguageConsoleDisplay().display_price(
         Price.cents(test_input))
     assert capsys.readouterr().out.splitlines() == [
         expected]

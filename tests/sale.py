@@ -58,7 +58,7 @@ class InMemoryCatalog(Catalog):
         return self.prices_by_barcode.get(barcode, None)
 
 
-class ConsoleDisplay(Display):
+class EnglishLanguageConsoleDisplay(Display):
     PRODUCT_NOT_FOUND_MESSAGE_FORMAT = "Product not found for {}"
     SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT = 'Scanning error: empty barcode'
     PRICE_IN_DOLLARS_MESSAGE_FORMAT = "${:,.2f}"
