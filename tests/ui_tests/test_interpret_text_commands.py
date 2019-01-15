@@ -9,9 +9,15 @@ class TextCommandInterpreter:
         self._barcode_scanned_listener = barcode_scanned_listener
 
     def process(self, reader):
+        self.process_text_input(reader)
+
+    def process_text_input(self, reader):
         for line in reader.getvalue().splitlines():
-            self._barcode_scanned_listener.onbarcode(line)
+            self.interpret_text_command(line)
         reader.close()
+
+    def interpret_text_command(self, line):
+        self._barcode_scanned_listener.onbarcode(line)
 
 
 class BarcodeScannedListener(ABC):
