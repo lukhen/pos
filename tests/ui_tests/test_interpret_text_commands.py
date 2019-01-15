@@ -1,4 +1,4 @@
-from unittest.mock import Mock
+from unittest.mock import Mock, call
 import io
 from abc import abstractmethod, ABC
 import pytest
@@ -9,10 +9,9 @@ class TextCommandInterpreter:
         self._barcode_scanned_listener = barcode_scanned_listener
 
     def process(self, reader):
-        barcode = reader.readline().strip()
-        print(barcode)
-        if barcode:
-            self._barcode_scanned_listener.onbarcode(barcode)
+        for line in reader.getvalue().splitlines():
+            self._barcode_scanned_listener.onbarcode(line)
+        reader.close()
 
 
 class BarcodeScannedListener(ABC):
@@ -36,3 +35,18 @@ def test_one():
     )
 
     barcode_scanned_listener.onbarcode.assert_called_once_with("::barcode::")
+
+
+def test_many():
+    barcode_scanned_listener = Mock(spec=BarcodeScannedListener)
+
+    TextCommandInterpreter(barcode_scanned_listener).process(
+        io.StringIO("::barcode 1::\n::barcode 2::\n::barcode 3::")
+    )
+
+    expected_onbarcode_calls = [
+        call("::barcode 1::"),
+        call("::barcode 2::"),
+        call("::barcode 3::"),
+    ]
+    barcode_scanned_listener.onbarcode.assert_has_calls(expected_onbarcode_calls)
