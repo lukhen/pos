@@ -21,6 +21,10 @@ class TextCommandInterpreter:
         self._barcode_scanned_listener.onbarcode(line)
 
     def read_valid_commands(self, lines):
+        for line in lines:
+            self.is_valid(line)
+
+    def is_valid(self, line):
         ...
 
 
@@ -74,4 +78,16 @@ def test_several_barcodes_interspersed_with_empty_lines():
 
     tci.read_valid_commands.assert_called_once_with(
         ["::barcode 1::", "", "", "::barcode 2::", "", "::barcode 3::"]
+    )
+
+
+def test_read_commands_from_text_with_barcodes_interspersed_with_empty_lines():
+    barcode_scanned_listener = Mock(spec=BarcodeScannedListener)
+    tci = TextCommandInterpreter(barcode_scanned_listener)
+    tci.is_valid = Mock()
+
+    tci.read_valid_commands(["::barcode 1::", "", "\t  ", "  "])
+
+    tci.is_valid.assert_has_calls(
+        (call("::barcode 1::"), call(""), call("\t  "), call("  "))
     )
