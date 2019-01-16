@@ -62,6 +62,8 @@ def test_many():
     barcode_scanned_listener.onbarcode.assert_has_calls(expected_onbarcode_calls)
 
 
+# SMELL This test actually doesn't test interpreting but reading,
+#       Probably the name is wrong and maybe it should be localized somewhere else
 def test_several_barcodes_interspersed_with_empty_lines():
     barcode_scanned_listener = Mock(spec=BarcodeScannedListener)
     tci = TextCommandInterpreter(barcode_scanned_listener)
