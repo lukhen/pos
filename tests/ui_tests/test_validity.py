@@ -11,3 +11,9 @@ def test_nonempty_line():
     tci = TextCommandInterpreter(None)
 
     assert tci.is_valid("::barcode::") is True
+
+
+def test_spaces_only():
+    tci = TextCommandInterpreter(None)
+
+    assert tci.is_valid("   ") is not True

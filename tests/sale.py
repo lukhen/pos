@@ -113,7 +113,7 @@ class TextCommandInterpreter:
         return valid_commands
 
     def is_valid(self, line):
-        if line == "":
+        if line.strip() == "":
             return False
         else:
             return True
