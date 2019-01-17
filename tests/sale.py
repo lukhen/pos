@@ -113,7 +113,10 @@ class TextCommandInterpreter:
         return valid_commands
 
     def is_valid(self, line):
-        return False
+        if line == "":
+            return False
+        else:
+            return True
 
 
 class BarcodeScannedListener(ABC):
