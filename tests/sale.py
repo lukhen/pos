@@ -87,3 +87,35 @@ class EnglishLanguageConsoleDisplay(Display):
 
     def _merge_template(self, message_template, *placeholder_values):
         return str.format(message_template, *placeholder_values)
+
+
+class TextCommandInterpreter:
+    def __init__(self, barcode_scanned_listener):
+        self._barcode_scanned_listener = barcode_scanned_listener
+
+    def process(self, reader):
+        self.process_text_input(reader)
+
+    def process_text_input(self, reader):
+        self.read_valid_commands(reader.getvalue().splitlines())
+        for line in reader.getvalue().splitlines():
+            self.interpret_text_command(line)
+        reader.close()
+
+    def interpret_text_command(self, line):
+        self._barcode_scanned_listener.onbarcode(line)
+
+    def read_valid_commands(self, lines):
+        valid_commands = []
+        for line in lines:
+            if self.is_valid(line):
+                valid_commands.append(line)
+        return valid_commands
+
+    def is_valid(self, line):
+        return True
+
+
+class BarcodeScannedListener(ABC):
+    def onbarcode(self, barcode):
+        ...
