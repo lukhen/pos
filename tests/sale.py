@@ -107,13 +107,17 @@ class TextCommandInterpreter:
 
     def read_valid_commands(self, lines):
         valid_commands = []
+        lines = [line.strip() for line in lines]
         for line in lines:
             if self.is_valid(line):
                 valid_commands.append(line)
         return valid_commands
 
     def is_valid(self, line):
-        if line.strip() == "":
+        """
+        ASSUMPTION: line is striped
+        """
+        if line == "":
             return False
         else:
             return True

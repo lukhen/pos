@@ -16,4 +16,4 @@ def test_nonempty_line():
 def test_spaces_only():
     tci = TextCommandInterpreter(None)
 
-    assert tci.is_valid("   ") is not True
+    assert tci.is_valid(str.strip("   ")) is not True

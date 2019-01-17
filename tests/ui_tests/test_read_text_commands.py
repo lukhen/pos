@@ -24,7 +24,12 @@ def test_read_commands_from_text_with_barcodes_interspersed_with_empty_lines():
     tci.read_valid_commands(["::barcode 1::", "", "\t  ", "  "])
 
     tci.is_valid.assert_has_calls(
-        (call("::barcode 1::"), call(""), call("\t  "), call("  "))
+        (
+            call(str.strip("::barcode 1::")),
+            call(str.strip("")),
+            call(str.strip("\t  ")),
+            call(str.strip("  ")),
+        )
     )
 
 
@@ -35,4 +40,7 @@ def test_produce_list_of_valid_commands():
 
     valid_commands = tci.read_valid_commands(lines)
 
-    assert all(command in valid_commands for command in filter(tci.is_valid, lines))
+    assert all(
+        command in valid_commands
+        for command in filter(tci.is_valid, [line.strip() for line in lines])
+    )
