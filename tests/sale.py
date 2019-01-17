@@ -97,9 +97,9 @@ class TextCommandInterpreter:
         self.process_text_input(reader)
 
     def process_text_input(self, reader):
-        self.read_valid_commands(reader.getvalue().splitlines())
-        for line in reader.getvalue().splitlines():
-            self.interpret_text_command(line)
+        valid_commands = self.read_valid_commands(reader.getvalue().splitlines())
+        for command in valid_commands:
+            self.interpret_text_command(command)
         reader.close()
 
     def interpret_text_command(self, line):

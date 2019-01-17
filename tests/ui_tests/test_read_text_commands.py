@@ -7,7 +7,7 @@ def test_several_barcodes_interspersed_with_empty_lines():
     barcode_scanned_listener = Mock(spec=BarcodeScannedListener)
     tci = TextCommandInterpreter(barcode_scanned_listener)
     text_input = "::barcode 1::\n\n\n::barcode 2::\n\n::barcode 3::"
-    tci.read_valid_commands = Mock()
+    tci.read_valid_commands = Mock(return_value=[])
 
     tci.process(io.StringIO(text_input))
 
